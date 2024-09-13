@@ -1,25 +1,32 @@
-import React, { useState, useEffect } from 'react';
-import RafikiService from '../rafiki/RafikiService';
+// src/components/patients/HealthDashboard.js
+import React, { useState } from 'react';
 
-const HealthDashboard = () => {
-  const [healthTips, setHealthTips] = useState('');
+function HealthDashboard() {
+  const [healthData, setHealthData] = useState({
+    steps: 5000,
+    sleepHours: 7,
+    bloodPressure: '120/80',
+  });
 
-  useEffect(() => {
-    async function fetchTips() {
-      const response = await RafikiService.getAnswer('What are the best ways to manage diabetes?');
-      setHealthTips(response);
-    }
-    fetchTips();
-  }, []);
+  const updateData = (type, value) => {
+    setHealthData((prevData) => ({
+      ...prevData,
+      [type]: value,
+    }));
+  };
 
   return (
     <div>
       <h2>Personalized Health Dashboard</h2>
-      <p>Track health data, monitor chronic conditions, and receive insights.</p>
-      <h3>Rafiki's Health Tip:</h3>
-      <p>{healthTips}</p>
+      <p>Steps Taken: {healthData.steps}</p>
+      <p>Sleep Hours: {healthData.sleepHours}</p>
+      <p>Blood Pressure: {healthData.bloodPressure}</p>
+
+      <button onClick={() => updateData('steps', healthData.steps + 1000)}>
+        Add 1000 steps
+      </button>
     </div>
   );
-};
+}
 
 export default HealthDashboard;

@@ -1,66 +1,148 @@
-.App {
-  text-align: center;
+/* Global Styles */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f0f8ff; /* Light blue background */
+  color: #333;
+  margin: 0;
+  padding: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+h2, h3 {
+  color: #007bb5; /* Darker blue for headers */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+button {
+  background-color: #007bb5;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+button:hover {
+  background-color: #005f8c;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-.App {
-  font-family: Arial, sans-serif;
-}
-
-.navbar {
-  background-color: #282c34;
+input[type="text"], input[type="date"], textarea {
   padding: 10px;
-  color: white;
+  border: 2px solid #007bb5;
+  border-radius: 5px;
+  width: 100%;
+  margin-top: 10px;
 }
 
-.navbar ul {
-  list-style: none;
-  display: flex;
-  gap: 15px;
+label {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
 }
 
-.navbar ul li {
-  display: inline;
+ul {
+  list-style-type: none;
+  padding: 0;
 }
 
-.navbar a {
-  color: white;
+ul li {
+  background-color: #e6f3ff;
+  margin: 10px 0;
+  padding: 15px;
+  border-radius: 5px;
+  border-left: 5px solid #007bb5;
+}
+
+a {
+  color: #007bb5;
   text-decoration: none;
 }
 
-h1, h2 {
-  color: #282c34;
+a:hover {
+  text-decoration: underline;
+}
+
+/* Component-Specific Styles */
+
+/* AppointmentBooking */
+.appointment-booking {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 20px auto;
+}
+
+.appointment-booking h2 {
+  margin-bottom: 20px;
+}
+
+/* Telemedicine */
+.telemedicine {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 20px auto;
+}
+
+.telemedicine h2 {
+  margin-bottom: 20px;
+}
+
+/* Medical Records */
+.medical-records {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 20px auto;
+}
+
+.medical-records h2 {
+  margin-bottom: 20px;
+}
+
+/* Health Dashboard */
+.health-dashboard {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 20px auto;
+}
+
+.health-dashboard h2 {
+  margin-bottom: 20px;
+}
+
+/* Prescription Management */
+.prescription-management {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 20px auto;
+}
+
+.prescription-management h2 {
+  margin-bottom: 20px;
+}
+
+/* Health Education */
+.health-education {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 20px auto;
+}
+
+.health-education h2 {
+  margin-bottom: 20px;
 }
