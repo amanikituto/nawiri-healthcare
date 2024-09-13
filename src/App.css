@@ -36,3 +36,31 @@
     transform: rotate(360deg);
   }
 }
+.App {
+  font-family: Arial, sans-serif;
+}
+
+.navbar {
+  background-color: #282c34;
+  padding: 10px;
+  color: white;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 15px;
+}
+
+.navbar ul li {
+  display: inline;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+}
+
+h1, h2 {
+  color: #282c34;
+}
