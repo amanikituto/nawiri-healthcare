@@ -1,5 +1,5 @@
-// src/components/sponsors/CostTransparency.js
 import React from 'react';
+import './SponsorDashboard.css'; // Import the CSS file
 
 function CostTransparency() {
   const spendingData = [
@@ -10,23 +10,15 @@ function CostTransparency() {
 
   return (
     <div className="cost-transparency">
-      <h2>Cost Transparency</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Category</th>
-            <th>Amount (KES)</th>
-          </tr>
-        </thead>
-        <tbody>
-          {spendingData.map((item, index) => (
-            <tr key={index}>
-              <td>{item.category}</td>
-              <td>{item.amount}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <h2 className="cost-head">Cost Transparency</h2>
+      <ul className="spending-list">
+        {spendingData.map((item, index) => (
+          <li key={index} className="spending-item">
+            <span className="category">{item.category}</span> - 
+            <span className="amount">Kshs.{item.amount}</span>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

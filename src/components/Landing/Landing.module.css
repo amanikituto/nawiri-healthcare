@@ -1,0 +1,165 @@
+/* Base Styles */
+.container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Light Mode Styles */
+.light {
+  background: radial-gradient(#f0ede5, #f0ede5);
+}
+
+/* Dark Mode Styles */
+.dark {
+  background: #121212;
+}
+
+/* Other styles */
+.bgGradient {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+}
+
+.heroContainer {
+  position: relative;
+  z-index: 10000;
+  width: 100%;
+}
+
+.hero {
+  width: 90%; /* Adjusted for better responsiveness */
+  margin: 0 auto;
+  text-align: center;
+  padding: 4em 0;
+}
+
+.light h1 {
+  font-family: "Voyage";
+  font-weight: 500;
+  font-size: 5vw;
+  color: #273287;
+}
+
+.dark h1{
+  font-family: "Voyage";
+  font-weight: 900;
+  font-size: 5vw;
+  color: #d3dde7;
+}
+
+.blob {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: animate-blob 4s ease-in-out infinite;
+}
+
+.blob1 {
+  position: absolute;
+  top: 20%;
+  left: 5%;
+  width: 300px; /* Adjusted for responsiveness */
+  height: 300px; /* Adjusted for responsiveness */
+  background: url('../../assets/Female doctor consultation in the.jpeg') no-repeat 50% 50%;
+  background-size: cover;
+}
+
+.blob2 {
+  position: absolute;
+  top: 50%;
+  right: 10%;
+  width: 120px; /* Adjusted for responsiveness */
+  height: 120px; /* Adjusted for responsiveness */
+  background: url('../../assets/Virtual Doctor Care_ What You Need to Know.jpeg') no-repeat 50% 50%;
+  background-size: cover;
+  animation-delay: 1s;
+}
+
+.blob3 {
+  position: absolute;
+  top: 20%;
+  right: 15%;
+  width: 80px; /* Adjusted for responsiveness */
+  height: 80px; /* Adjusted for responsiveness */
+  border: 1px solid rgba(0, 0, 0, 1);
+  animation-delay: 2s;
+}
+
+/* Keyframes for blob animation */
+@keyframes animate-blob {
+  0% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+  50% {
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+  }
+  100% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+}
+
+/* Media Queries for Responsiveness */
+
+/* Mobile Devices */
+@media (max-width: 768px) {
+  .hero {
+    width: 90%;
+    padding: 2em 0;
+  }
+
+  h1 {
+    font-size: 6vw; /* Larger font size on smaller screens */
+  }
+
+  .cta h3 {
+    font-size: 10px;
+  }
+
+  .blob1 {
+    width: 200px;
+    height: 200px;
+  }
+
+  .blob2 {
+    width: 100px;
+    height: 100px;
+  }
+
+  .blob3 {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+/* Tablet Devices */
+@media (max-width: 1024px) {
+  .hero {
+    width: 80%;
+  }
+
+  h1 {
+    margin-top: 230px;
+    font-size: 5vw;
+  }
+
+  .blob1 {
+    width: 250px;
+    height: 250px;
+  }
+
+  .blob2 {
+    width: 110px;
+    height: 110px;
+  }
+
+  .blob3 {
+    width: 70px;
+    height: 70px;
+  }
+}

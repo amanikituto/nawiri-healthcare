@@ -1,0 +1,135 @@
+/* Base Styles */
+.dashboard-container {
+  padding: 10px;
+  margin-left: 70px; /* Space between columns */
+}
+
+.dashboard-columns {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap; /* Allow items to wrap to new lines */
+}
+
+.dashboard-column {
+  flex: 1;
+  min-width: 300px; /* Minimum width to maintain card layout */
+}
+
+.dashboard-column:first-child {
+  border-left: none; /* Remove left border for the first column */
+}
+
+.dashboard-column:last-child {
+  border-right: none; /* Remove right border for the last column */
+}
+
+/* Card Styling */
+.card {
+  width: 300px;
+  height: 490px;
+  background: #fff;
+  border: 0.5px solid #000;
+  transform: rotate(0deg);
+  transition: all 0.3s ease;
+  position: relative;
+  text-align: center;
+  overflow: hidden;
+  box-shadow: 7px 7px 0 #000;
+  margin-bottom: 20px; /* Space between cards */
+}
+
+.card h2 {
+  border-bottom: #000 solid 2px;
+}
+
+.card:active {
+  animation: shake 0.5s ease-in-out;
+}
+
+.card:hover {
+  transform: rotate(0deg) scale(1.02);
+  box-shadow: 20px 20px 0 #000;
+}
+
+.features {
+  border: #000 2px solid;
+  width: 30%;
+  margin-left: 110px;
+  font-weight: 800;
+  margin-bottom: 10px;
+  background-color: #ffffff;
+  color: #000000;
+  box-shadow: 3px 3px 0 #000;
+}
+
+.practice, .analytics, .patient {
+  width: 200px;
+  height: 120px;
+  border: none;
+}
+
+.data-analytics {
+  background-color: #d6b4fc;
+}
+
+.patient-engagement {
+  background-color: #d8e63c;
+}
+
+.practice-management {
+  background-color: #d3dde7;
+}
+
+/* Media Queries for Responsiveness */
+
+/* Mobile Devices */
+@media (max-width: 768px) {
+  .dashboard-container {
+    margin-left: 0; /* Remove left margin on small screens */
+  }
+
+  .dashboard-columns {
+    flex-direction: column; /* Stack columns vertically */
+    gap: 20px; /* Reduced gap between rows */
+  }
+
+  .dashboard-column {
+    width: 70%; /* Full width columns */
+  }
+
+  .card {
+    width: 50px; /* Full width cards on small screens */
+    height: auto;
+    padding: 0;
+    margin: 0; /* Adjust height for better responsiveness */
+  }
+
+  .features {
+    width: 100%; /* Full width features section */
+    text-align: center;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 20px; 
+    padding: 10px;/* Center align text on small screens */
+  }
+}
+
+/* Tablet Devices */
+@media (max-width: 1024px) {
+  .dashboard-columns {
+    flex-direction: column; /* Stack columns vertically on tablets as well */
+    gap: 30px; /* Adjust gap between rows */
+  }
+
+  .dashboard-column {
+    width: 80%;
+    margin-left: 50px; /* Full width columns on tablets */
+  }
+
+  .card {
+    width: 100%; /* Full width cards on tablets */
+    height: auto;
+    margin: 0;
+  }
+
+}

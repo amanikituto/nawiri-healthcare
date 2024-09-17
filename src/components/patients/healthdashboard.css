@@ -1,0 +1,141 @@
+.health-dashboard-container {
+  padding: 20px;
+  margin-left: 60px;
+}
+
+/* Responsive Health Cards Row */
+.health-cards-row {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* Responsive Health Card */
+.sleep-card, .step-card, .blood-card {
+  border: 2px solid #000000;
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  padding: 15px;
+  text-align: center;
+  position: relative;
+  box-sizing: border-box;
+  box-shadow: 4px 4px 0 #000;
+}
+
+.blood-card {
+  background-color: #d3dde7;
+}
+
+.sleep-card {
+  background-color: #d8e63c;
+}
+
+.step-card {
+  background-color: #d6b4fc;
+}
+.sleep-card:hover, .step-card:hover, .blood-card:hover{
+  transform: rotate(0deg) scale(1.08);
+  box-shadow: 6px 6px 0 #000;
+}
+/* Image Styles */
+.stepsimg, .sleepimg, .bloodimg {
+  position: absolute;
+  top: 10px; /* Adjust as needed */
+  left: 10px; /* Adjust as needed */
+  width: 40px;
+  height: 40px;
+  border: none;
+  box-shadow: none;
+}
+
+/* Graph Container */
+.graph-container {
+  background-color: #f0eee9;
+  width: 100%;
+  height: 15px;
+  margin-top: 10px;
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Graph Bar */
+.graph-bar {
+  background-color: #000000;
+  height: 100%;
+  position: relative;
+}
+
+/* Graph Percentage */
+.graph-percentage {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* Bottom Row */
+.bottom-row {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+/* Date Box */
+.date-box {
+  font-size: 12px;
+  color: #333;
+  padding: 5px;
+  border: 2px solid #000000;
+  text-align: center;
+  width: 100%;
+}
+
+/* Step Button */
+.step-btn {
+  padding: 5px 10px;
+  font-size: 12px;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  border: 2px solid black;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+  box-shadow: 4px 4px 0 #000;
+}
+
+.step-btn:hover {
+  background-color: #ffffff;
+  color: #000000;
+  transform: rotate(0deg) scale(1.08);
+  box-shadow: 7px 7px 0 #000;
+}
+
+/* Media Queries for Larger Screens */
+@media(min-width: 768px) {
+  .health-cards-row {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .bottom-row {
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .date-box {
+    width: auto;
+  }
+
+  .step-btn {
+    width: auto;
+  }
+}
