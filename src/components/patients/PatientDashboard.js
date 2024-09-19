@@ -5,6 +5,7 @@ import MedicalRecords from './MedicalRecords';
 import HealthDashboard from './HealthDashboard';
 import Navbar from '../layout/Navbar';
 import Footer from '../layout/Footer';
+import RafikiChatbot from './RafikiChatbot'; // Import the chatbot component
 import './PatientDashboard.css'; // Add a CSS file for styling
 
 const PatientDashboard = () => {
@@ -41,6 +42,11 @@ const PatientDashboard = () => {
           </div>
         </div>
       </div>
+
+      {/* Add the chatbot at the bottom or wherever appropriate */}
+      <RafikiChatbot />
+
+      <Footer />
     </div>
   );
 };

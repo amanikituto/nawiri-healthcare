@@ -3,8 +3,9 @@ import PracticeManagement from './PracticeManagement';
 import PatientEngagement from './PatientEngagement';
 import DataAnalytics from './DataAnalytics';
 import Navbar from '../layout/Navbar';
-import './ProviderDashboard.css'; // Import the CSS for card styling
 import Footer from '../layout/Footer';
+import RafikiChatbot from './RafikiChatbot'; // Import the chatbot component
+import './ProviderDashboard.css'; // Import the CSS for card styling
 
 const ProviderDashboard = () => {
   return (
@@ -31,6 +32,8 @@ const ProviderDashboard = () => {
           </div>
         </div>
       </div>
+      <RafikiChatbot /> {/* Add the chatbot component */}
+      <Footer />
     </div>
   );
 };
