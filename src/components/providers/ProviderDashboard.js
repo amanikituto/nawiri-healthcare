@@ -1,36 +1,81 @@
 import React from 'react';
-import PracticeManagement from './PracticeManagement';
-import PatientEngagement from './PatientEngagement';
-import DataAnalytics from './DataAnalytics';
 import Navbar from '../layout/Navbar';
 import './ProviderDashboard.css'; // Import the CSS for card styling
 import Footer from '../layout/Footer';
+import { Link } from 'react-router-dom';
+import analytics from '../../assets/Analytics is Worth Looking at Even for Interior Design Firms - Dig This Design (1).jpeg'
+import patient from '../../assets/Tips on Improving Patient Education as a Nurse.jpeg';
+import practice from '../../assets/Female doctor consultation in the.jpeg';
+
 
 const ProviderDashboard = () => {
   return (
     <div>
       <Navbar />
       <div className="dashboard-container">
-        <div>
-          <div className="dashboard-columns">
-            <div className="dashboard-column">
-              <div className="card">
-                <PracticeManagement />
+        <div className="dashboard-columns">
+          
+          {/* Card 1: Practice Management */}
+          <div className="dashboard-column">
+            <Link to="/practice" className="card-link">
+              <div className="card practice-management">
+                <h2 className="card__title">Practice Management</h2>
+                <img className='practice' src={practice} alt='practice' />
+                <p className="card__subtitle">
+                  Streamline appointment scheduling, patient communication, billing, and EMR management.
+                </p>
+                <p className='features'>Features</p>
+                <ul className="card__form">
+                  <li>Appointment Scheduling</li>
+                  <li>Patient Communication</li>
+                  <li>Billing</li>
+                  <li>EMR Management</li>
+                </ul>
               </div>
-            </div>
-            <div className="dashboard-column">
-              <div className="card">
-                <PatientEngagement />
-              </div>
-            </div>
-            <div className="dashboard-column">
-              <div className="card">
-                <DataAnalytics />
-              </div>
-            </div>
+            </Link>
           </div>
+          
+          {/* Card 2: Patient Engagement */}
+          <div className="dashboard-column">
+            <Link to="/patient" className="card-link">
+              <div className="card patient-engagement">
+                <h2 className="card__title">Patient Engagement</h2>
+                <img className='patient' src={patient} alt='patient' />
+                <p className="card__subtitle">
+                  Enhance patient communication through secure messaging, appointment reminders, and educational resources.
+                </p>
+                <p className='features'>Features</p>
+                <ul className="card__form">
+                  <li>Secure Messaging</li>
+                  <li>Appointment Reminders</li>
+                  <li>Educational Resources</li>
+                </ul>
+              </div>
+            </Link>
+          </div>
+          
+          {/* Card 3: Data Analytics */}
+          <div className="dashboard-column">
+            <Link to="/analytics" className="card-link">
+              <div className="card data-analytics">
+                <h2 className="card__title">Data Analytics</h2>
+                <img className='analytics' src={analytics} alt='analytics' />
+                <p className="card__subtitle">
+                  Gain insights into patient populations, track health outcomes, and identify areas for quality improvement.
+                </p>
+                <p className='features'>Features</p>
+                <ul className="card__form">
+                  <li>Patient Population Insights</li>
+                  <li>Health Outcomes Tracking</li>
+                  <li>Quality Improvement Identification</li>
+                </ul>
+              </div>
+            </Link>
+          </div>
+          
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
