@@ -7,6 +7,9 @@ import Landing from './components/Landing/Landing';
 import './App.css';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
+import PatientEngagement from './components/providers/PatientEngagement';
+import DataAnalytics from './components/providers/DataAnalytics';
+import PracticeManagement from './components/providers/PracticeManagement';
 
 function App() {
   return (
@@ -17,6 +20,9 @@ function App() {
           <Route path="/patients" element={<PatientDashboard />} />
           <Route path="/sponsors" element={<SponsorDashboard />} />
           <Route path="/providers" element={<ProviderDashboard />} />
+          <Route path="/practice" element={<PracticeManagement />} />
+          <Route path="/patient" element={<PatientEngagement />} />
+          <Route path="/analytics" element={<DataAnalytics />} />
         </Routes>
         {/* Pass toggleTheme function to Footer */}
         <Footer/>
