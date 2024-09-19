@@ -1,16 +1,13 @@
 import React from 'react';
 import Navbar from '../layout/Navbar';
 import Footer from '../layout/Footer';
-<<<<<<< HEAD
 import RafikiChatbot from './RafikiChatbot'; // Import the chatbot component
 import './ProviderDashboard.css'; // Import the CSS for card styling
-=======
 import { Link } from 'react-router-dom';
 import analytics from '../../assets/Analytics is Worth Looking at Even for Interior Design Firms - Dig This Design (1).jpeg'
 import patient from '../../assets/Tips on Improving Patient Education as a Nurse.jpeg';
 import practice from '../../assets/Female doctor consultation in the.jpeg';
 
->>>>>>> 867afbe454fe16a4dc92eb6ab378702135ae43ca
 
 const ProviderDashboard = () => {
   return (
@@ -79,10 +76,7 @@ const ProviderDashboard = () => {
           
         </div>
       </div>
-<<<<<<< HEAD
-      <RafikiChatbot /> {/* Add the chatbot component */}
-=======
->>>>>>> 867afbe454fe16a4dc92eb6ab378702135ae43ca
+
       <Footer />
     </div>
   );
