@@ -1,0 +1,91 @@
+.appointments-container {
+    padding: 20px;
+    background-color: #f0ede5; /* Light grey background */
+  }
+  
+  h2 {
+    text-align: center;
+    color: #333;
+    font-size: 24px;
+  }
+  
+  .cards-wrapper {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+  
+  .appointment-card {
+    background-color: white;
+    width: 250px;
+    padding: 20px;
+    margin: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .appointment-card:hover {
+    transform: scale(1.05);
+  }
+  
+  .card-content {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .reminder-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .reminder-button .bell-icon {
+    font-size: 24px;
+    color: #ff6f00; /* Reminder bell color */
+  }
+  
+  .show-more {
+    margin-top: 20px;
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .show-more:hover {
+    background-color: #ff6f00;
+  }
+  
+  .emr-container {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-top: 20px;
+    background-color: #f9f9f9;
+  }
+  
+  .emr-section {
+    margin-bottom: 20px;
+  }
+  
+  .emr-section h3 {
+    margin-bottom: 10px;
+  }
+  
+  .emr-section ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .emr-section ul li {
+    margin-bottom: 5px;
+  }
+  
