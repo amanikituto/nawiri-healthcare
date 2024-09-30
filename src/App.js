@@ -10,6 +10,8 @@ import Footer from './components/layout/Footer';
 import PatientEngagement from './components/providers/PatientEngagement';
 import DataAnalytics from './components/providers/DataAnalytics';
 import PracticeManagement from './components/providers/PracticeManagement';
+import Login from './components/providers/Login';
+import Registration from './components/providers/Registration';
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
           <Route path="/practice" element={<PracticeManagement />} />
           <Route path="/patient" element={<PatientEngagement />} />
           <Route path="/analytics" element={<DataAnalytics />} />
+          <Route path="/register" element={<Registration />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
         {/* Pass toggleTheme function to Footer */}
         <Footer/>
