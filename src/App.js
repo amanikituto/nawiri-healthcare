@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react'; // Removed useState since it's not used
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import PatientDashboard from './components/patients/PatientDashboard';
-import SponsorDashboard from './components/sponsors/SponsorDashboard';
 import ProviderDashboard from './components/providers/ProviderDashboard';
 import Landing from './components/Landing/Landing';
 import './App.css';
-import Navbar from './components/layout/Navbar';
-import Footer from './components/layout/Footer';
+import Footer from './components/layout/Footer'; // Removed Navbar since it's not used
 import PatientEngagement from './components/providers/PatientEngagement';
 import DataAnalytics from './components/providers/DataAnalytics';
 import PracticeManagement from './components/providers/PracticeManagement';
@@ -20,7 +18,6 @@ function App() {
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/patients" element={<PatientDashboard />} />
-          <Route path="/sponsors" element={<SponsorDashboard />} />
           <Route path="/providers" element={<ProviderDashboard />} />
           <Route path="/practice" element={<PracticeManagement />} />
           <Route path="/patient" element={<PatientEngagement />} />
@@ -28,8 +25,7 @@ function App() {
           <Route path="/register" element={<Registration />} />
           <Route path="/login" element={<Login />} />
         </Routes>
-        {/* Pass toggleTheme function to Footer */}
-        <Footer/>
+        <Footer /> {/* Footer is being used */}
       </div>
     </Router>
   );

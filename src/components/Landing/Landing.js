@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import styles from './Landing.module.css';  // Import styles from CSS module
 import Navbar from '../layout/Navbar';
-import Footer from '../layout/Footer';
+
 
 const Landing = ({ isDarkMode }) => {
   // Animation Variants for Framer Motion
@@ -63,7 +63,7 @@ const Landing = ({ isDarkMode }) => {
       <motion.div className={styles.heroContainer}>
         <motion.div className={styles.hero} initial="hidden" animate="visible" variants={heroVariants}>
           <h1>
-            *Nawiri <br />Healthcare <br />cares about <br />you.*
+            Nawiri <br />Healthcare <br />cares about <br />you.
           </h1>
         </motion.div>
       </motion.div>

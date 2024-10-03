@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './ProviderDashboard.css';
+import Navbar from '../layout/Navbar'; // Import the Navbar component
 
 const Registration = () => {
   const [formData, setFormData] = useState({
@@ -8,6 +9,7 @@ const Registration = () => {
     password: '',
     role: 'patient' // Default role
   });
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleChange = (e) => {
     setFormData({
@@ -18,37 +20,71 @@ const Registration = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Submit form data to the backend
+
+    // Basic validation
+    if (!formData.name || !formData.email || !formData.password) {
+      setErrorMessage('All fields are required.');
+      return;
+    }
+
+    // Clear error and submit registration data to the backend
+    setErrorMessage('');
     console.log(formData);
+    // Call API for registration or handle further logic here
   };
 
   return (
-    <div className="registration-container">
-      <h2>Register</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Name:</label>
-          <input type="text" name="name" value={formData.name} onChange={handleChange} required />
-        </div>
-        <div>
-          <label>Email:</label>
-          <input type="email" name="email" value={formData.email} onChange={handleChange} required />
-        </div>
-        <div>
-          <label>Password:</label>
-          <input type="password" name="password" value={formData.password} onChange={handleChange} required />
-        </div>
-        <div>
-          <label>Register as:</label>
-          <select name="role" value={formData.role} onChange={handleChange}>
-            <option value="patient">Patient</option>
-            <option value="sponsor">Sponsor</option>
-            <option value="provider">Provider</option>
-          </select>
-        </div>
-        <button type="submit">Register</button>
-      </form>
-    </div>
+    <>
+      <Navbar /> {/* Navbar added */}
+      <div className="registration-container">
+        <h2>Register</h2>
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label>Name:</label>
+            <input 
+              type="text" 
+              name="name" 
+              value={formData.name} 
+              onChange={handleChange} 
+              required 
+              placeholder="Enter your name" 
+            />
+          </div>
+          <div>
+            <label>Email:</label>
+            <input 
+              type="email" 
+              name="email" 
+              value={formData.email} 
+              onChange={handleChange} 
+              required 
+              placeholder="Enter your email" 
+            />
+          </div>
+          <div>
+            <label>Password:</label>
+            <input 
+              type="password" 
+              name="password" 
+              value={formData.password} 
+              onChange={handleChange} 
+              required 
+              placeholder="Enter a secure password" 
+            />
+          </div>
+          <div>
+            <label>Register as:</label>
+            <select name="role" value={formData.role} onChange={handleChange}>
+              <option value="patient">Patient</option>
+              <option value="sponsor">Sponsor</option>
+              <option value="provider">Provider</option>
+            </select>
+          </div>
+          {errorMessage && <p className="error-message">{errorMessage}</p>} {/* Display error message */}
+          <button type="submit">Register</button>
+        </form>
+      </div>
+    </>
   );
 };
 

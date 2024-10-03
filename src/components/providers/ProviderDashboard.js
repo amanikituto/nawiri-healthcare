@@ -1,7 +1,6 @@
 import React from 'react';
 import Navbar from '../layout/Navbar';
-import Footer from '../layout/Footer';
-import RafikiChatbot from './RafikiChatbot'; // Import the chatbot component
+import Footer from '../layout/Footer';// Import the chatbot component
 import './ProviderDashboard.css'; // Import the CSS for card styling
 import { Link } from 'react-router-dom';
 import analytics from '../../assets/Analytics is Worth Looking at Even for Interior Design Firms - Dig This Design (1).jpeg'
