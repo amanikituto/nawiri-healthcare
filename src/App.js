@@ -12,6 +12,7 @@ import DataAnalytics from './components/providers/DataAnalytics';
 import PracticeManagement from './components/providers/PracticeManagement';
 import Login from './components/providers/Login';
 import Registration from './components/providers/Registration';
+import AIDiagnosisSupport from './components/providers/AIDiagnosisSupport';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path="/analytics" element={<DataAnalytics />} />
           <Route path="/register" element={<Registration />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/AiDiagnosis" element={<AIDiagnosisSupport />} />
         </Routes>
         {/* Pass toggleTheme function to Footer */}
         <Footer/>
