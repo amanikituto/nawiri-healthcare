@@ -38,18 +38,17 @@ const ProviderDashboard = () => {
           
           {/* Card 2: Patient Engagement */}
           <div className="dashboard-column">
-            <Link to="/patient" className="card-link">
+            <Link to="/AiDiagnosis" className="card-link">
               <div className="card patient-engagement">
-                <h2 className="card__title">Patient Engagement</h2>
+                <h2 className="card__title">AI Diagnosis</h2>
                 <img className='patient' src={patient} alt='patient' />
                 <p className="card__subtitle">
-                  Enhance patient communication through secure messaging, appointment reminders, and educational resources.
+                  Enhance patient tratment using Ai.
                 </p>
                 <p className='features'>Features</p>
                 <ul className="card__form">
-                  <li>Secure Messaging</li>
-                  <li>Appointment Reminders</li>
-                  <li>Educational Resources</li>
+                  <li>Assisted diagnosis </li>
+                  
                 </ul>
               </div>
             </Link>
