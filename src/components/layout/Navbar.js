@@ -9,8 +9,6 @@ const Navbar = () => {
       <ul>
         <li><Link to="/patients">Patients</Link></li>
         <li><Link to="/providers">Providers</Link></li>
-        <li><Link to="/login">Login</Link></li>
-        <li><Link to="/register">Register</Link></li>
       </ul>
     </nav>
   );
