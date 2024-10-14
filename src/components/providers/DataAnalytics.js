@@ -92,10 +92,6 @@ const ClinicalAnalyticsDashboard = () => {
     </div>
   );
 };
-=======
-import React, { useState } from 'react';
-import './ProviderDashboard.css';
-import Navbar from '../layout/Navbar';
 
 function DataAnalytics() {
   const [diagnosisData, setDiagnosisData] = useState(null);
