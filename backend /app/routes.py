@@ -2,21 +2,33 @@ from flask import Blueprint, request, jsonify
 from .models import User, Appointment, MedicalRecord, db
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_cors import cross_origin
 
 main = Blueprint('main', __name__)
 
+@main.route('/')
+def home():
+    return jsonify({'message': 'Welcome to Nawiri Healthcare'})
+
 # Register a user
 @main.route('/register', methods=['POST'])
+@cross_origin()
 def register():
     data = request.get_json()
-    hashed_password = generate_password_hash(data['password'], method='sha256')
+    existing_user = User.query.filter_by(email=data['email']).first()
+    if existing_user:
+        return jsonify({'message': 'Email already registered'}), 400
+    hashed_password = generate_password_hash(data['password'], method='pbkdf2:sha256')
     new_user = User(email=data['email'], password=hashed_password, role=data['role'])
     db.session.add(new_user)
     db.session.commit()
     return jsonify({'message': 'User registered successfully'}), 201
 
+
+
 # Login and generate a JWT token
 @main.route('/login', methods=['POST'])
+@cross_origin()
 def login():
     data = request.get_json()
     user = User.query.filter_by(email=data['email']).first()
@@ -26,6 +38,8 @@ def login():
 
     token = create_access_token(identity={'id': user.id, 'email': user.email, 'role': user.role})
     return jsonify({'token': token})
+
+
 
 # Get all appointments for the logged-in user (patient or provider)
 @main.route('/appointments', methods=['GET'])
