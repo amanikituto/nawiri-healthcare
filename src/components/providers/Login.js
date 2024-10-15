@@ -9,6 +9,9 @@ const Login = () => {
     email: '',
     password: ''
   });
+  const [errorMessage, setErrorMessage] = useState('');
+  const [loading, setLoading] = useState(false);
+
   const navigate = useNavigate();
   const { login } = useAuth();
 
@@ -21,42 +24,69 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true); // Set loading state when request is made
+    setErrorMessage(''); // Clear previous error message
+
     try {
       const response = await apiLogin(formData.email, formData.password);
-      login(response.data);
-      
-      // Redirect based on user role
-      switch(response.data.role) {
-        case 'patient':
-          navigate('/patients');
-          break;
-        case 'sponsor':
-          navigate('/sponsors');
-          break;
-        case 'provider':
-          navigate('/providers');
-          break;
-        default:
-          navigate('/');
+      if (response && response.data) {
+        login(response.data);
+
+        // Redirect based on user role
+        switch(response.data.role) {
+          case 'patient':
+            navigate('/patients');
+            break;
+          case 'sponsor':
+            navigate('/sponsors');
+            break;
+          case 'provider':
+            navigate('/providers');
+            break;
+          default:
+            navigate('/');
+        }
+      } else {
+        throw new Error('Invalid login response structure');
       }
     } catch (error) {
       console.error('Login failed:', error);
+      setErrorMessage('Invalid email or password');
+    } finally {
+      setLoading(false); // Reset loading state after request completes
     }
   };
-  
+
   return (
     <div className="login-container">
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <label>Email:</label>
-          <input type="email" name="email" value={formData.email} onChange={handleChange} required />
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
         </div>
         <div>
           <label>Password:</label>
-          <input type="password" name="password" value={formData.password} onChange={handleChange} required />
+          <input
+            type="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            required
+          />
         </div>
-        <button type="submit">Login</button>
+
+        {errorMessage && <div className="error">{errorMessage}</div>} {/* Show error message */}
+        
+        <button type="submit" disabled={loading}>
+          {loading ? 'Loading...' : 'Login'}
+        </button>
       </form>
     </div>
   );
