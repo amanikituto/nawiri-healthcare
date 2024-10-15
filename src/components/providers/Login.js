@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { login as apiLogin } from '../../services/api';
+import { useAuth } from '../../context/AuthContext';
 import './ProviderDashboard.css';
 
 const Login = () => {
@@ -6,6 +9,8 @@ const Login = () => {
     email: '',
     password: ''
   });
+  const navigate = useNavigate();
+  const { login } = useAuth();
 
   const handleChange = (e) => {
     setFormData({
@@ -14,12 +19,31 @@ const Login = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Submit login data to the backend
-    console.log(formData);
+    try {
+      const response = await apiLogin(formData.email, formData.password);
+      login(response.data);
+      
+      // Redirect based on user role
+      switch(response.data.role) {
+        case 'patient':
+          navigate('/patients');
+          break;
+        case 'sponsor':
+          navigate('/sponsors');
+          break;
+        case 'provider':
+          navigate('/providers');
+          break;
+        default:
+          navigate('/');
+      }
+    } catch (error) {
+      console.error('Login failed:', error);
+    }
   };
-
+  
   return (
     <div className="login-container">
       <h2>Login</h2>
