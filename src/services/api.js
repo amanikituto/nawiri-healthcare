@@ -9,26 +9,24 @@ const api = axios.create({
   },
 });
 
-export const getHomePage = () => {
-  return api.get('/');
+export const login = (name, password) => {
+  return api.post('/login', { name, password });
 };
 
-export const login = (email, password) => {
-  return api.post('/login', { email, password });
+export const register = (name, email, password, role) => {
+  return api.post('/register', { name, email, password, role });
 };
 
-
-export const register = (email, password, role) => {
-  return api.post('/register', { email, password, role });
+export const logout = () => {
+  return api.post('/logout');
 };
-
 
 export const getAppointments = () => {
   return api.get('/appointments');
 };
 
-export const createAppointment = (doctorId, description) => {
-  return api.post('/appointments', { doctor_id: doctorId, description });
+export const createAppointment = (doctorId, date, description) => {
+  return api.post('/appointments', { doctor_id: doctorId, date, description });
 };
 
 export const getMedicalRecords = () => {
@@ -37,6 +35,14 @@ export const getMedicalRecords = () => {
 
 export const createMedicalRecord = (patientId, record) => {
   return api.post('/medical-records', { patient_id: patientId, record });
+};
+
+export const getUserProfile = () => {
+  return api.get('/user');
+};
+
+export const updateUserProfile = (userData) => {
+  return api.put('/user', userData);
 };
 
 export const setAuthToken = (token) => {

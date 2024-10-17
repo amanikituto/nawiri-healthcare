@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { login as apiLogin } from '../../services/api';
 import { useAuth } from '../../context/AuthContext';
 import './ProviderDashboard.css';
 
 const Login = () => {
   const [formData, setFormData] = useState({
-    email: '',
+    name: '',
     password: ''
   });
   const navigate = useNavigate();
@@ -22,11 +21,9 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await apiLogin(formData.email, formData.password);
-      login(response.data);
-      
+      const userData = await login(formData.name, formData.password);
       // Redirect based on user role
-      switch(response.data.role) {
+      switch(userData.role) {
         case 'patient':
           navigate('/patients');
           break;
@@ -40,7 +37,8 @@ const Login = () => {
           navigate('/');
       }
     } catch (error) {
-      console.error('Login failed:', error);
+      console.error('Login failed:', error.message);
+      // Handle login error (e.g., display error message to user)
     }
   };
   
@@ -49,8 +47,8 @@ const Login = () => {
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
         <div>
-          <label>Email:</label>
-          <input type="email" name="email" value={formData.email} onChange={handleChange} required />
+          <label>Name:</label>
+          <input type="text" name="name" value={formData.name} onChange={handleChange} required />
         </div>
         <div>
           <label>Password:</label>
