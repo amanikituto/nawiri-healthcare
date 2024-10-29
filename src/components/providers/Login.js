@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { login as apiLogin } from '../../services/api';
 import { useAuth } from '../../context/AuthContext';
 import './ProviderDashboard.css';
 
 const Login = () => {
   const [formData, setFormData] = useState({
-    email: '',
+    name: '',
     password: ''
   });
   const [errorMessage, setErrorMessage] = useState('');
@@ -28,6 +27,25 @@ const Login = () => {
     setErrorMessage(''); // Clear previous error message
 
     try {
+
+      const userData = await login(formData.name, formData.password);
+      // Redirect based on user role
+      switch(userData.role) {
+        case 'patient':
+          navigate('/patients');
+          break;
+        case 'sponsor':
+          navigate('/sponsors');
+          break;
+        case 'provider':
+          navigate('/providers');
+          break;
+        default:
+          navigate('/');
+      }
+    } catch (error) {
+      console.error('Login failed:', error.message);
+      // Handle login error (e.g., display error message to user)
       const response = await apiLogin(formData.email, formData.password);
       if (response && response.data) {
         login(response.data);
@@ -62,6 +80,9 @@ const Login = () => {
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
         <div>
+
+          <label>Name:</label>
+          <input type="text" name="name" value={formData.name} onChange={handleChange} required /
           <label>Email:</label>
           <input
             type="email"
@@ -70,6 +91,7 @@ const Login = () => {
             onChange={handleChange}
             required
           />
+
         </div>
         <div>
           <label>Password:</label>

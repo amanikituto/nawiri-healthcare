@@ -27,6 +27,7 @@ const ProtectedRoute = ({ children, allowedRoles }) => {
 };
 
 function App() {
+  console.log('App rendering');
   return (
     <AuthProvider>
       <Router>

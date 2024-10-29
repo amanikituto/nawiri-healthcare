@@ -1,10 +1,22 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, memo } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import './navbar.css'
 
-const Navbar = () => {
+const Navbar = memo(() => {
   const { user, logout } = useAuth();
+  const navigate = useNavigate();
+
+  console.log('Navbar rendering, user:', user);
+
+  const handleLogout = async () => {
+    await logout();
+    navigate('/');
+  };
+
+  useEffect(() => {
+    console.log('User state changed:', user);
+  }, [user]);
 
   return (
     <nav className="navbar">
@@ -23,7 +35,7 @@ const Navbar = () => {
                 <li><Link to="/AiDiagnosis">AI Diagnosis Support</Link></li>
               </>
             )}
-            <li><button onClick={logout}>Logout</button></li>
+            <li><button onClick={handleLogout}>Logout</button></li>
           </>
         ) : (
           <>
@@ -34,6 +46,6 @@ const Navbar = () => {
       </ul>
     </nav>
   );
-};
+});
 
 export default Navbar;
