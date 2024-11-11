@@ -23,14 +23,13 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true); // Set loading state when request is made
-    setErrorMessage(''); // Clear previous error message
+    setLoading(true);
+    setErrorMessage('');
 
     try {
-
       const userData = await login(formData.name, formData.password);
       // Redirect based on user role
-      switch(userData.role) {
+      switch (userData.role) {
         case 'patient':
           navigate('/patients');
           break;
@@ -45,33 +44,9 @@ const Login = () => {
       }
     } catch (error) {
       console.error('Login failed:', error.message);
-      // Handle login error (e.g., display error message to user)
-      const response = await apiLogin(formData.email, formData.password);
-      if (response && response.data) {
-        login(response.data);
-
-        // Redirect based on user role
-        switch(response.data.role) {
-          case 'patient':
-            navigate('/patients');
-            break;
-          case 'sponsor':
-            navigate('/sponsors');
-            break;
-          case 'provider':
-            navigate('/providers');
-            break;
-          default:
-            navigate('/');
-        }
-      } else {
-        throw new Error('Invalid login response structure');
-      }
-    } catch (error) {
-      console.error('Login failed:', error);
       setErrorMessage('Invalid email or password');
     } finally {
-      setLoading(false); // Reset loading state after request completes
+      setLoading(false);
     }
   };
 
@@ -80,18 +55,14 @@ const Login = () => {
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
         <div>
-
           <label>Name:</label>
-          <input type="text" name="name" value={formData.name} onChange={handleChange} required /
-          <label>Email:</label>
           <input
-            type="email"
-            name="email"
-            value={formData.email}
+            type="text"
+            name="name"
+            value={formData.name}
             onChange={handleChange}
             required
           />
-
         </div>
         <div>
           <label>Password:</label>
@@ -104,7 +75,7 @@ const Login = () => {
           />
         </div>
 
-        {errorMessage && <div className="error">{errorMessage}</div>} {/* Show error message */}
+        {errorMessage && <div className="error">{errorMessage}</div>}
         
         <button type="submit" disabled={loading}>
           {loading ? 'Loading...' : 'Login'}
