@@ -3,11 +3,31 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import './ProviderDashboard.css';
 
+// Mock implementation of apiLogin (replace this with your actual implementation or import)
+const apiLogin = async (email, password) => {
+  // Example: Simulate an API call
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (email === 'test@example.com' && password === 'password') {
+        resolve({
+          data: {
+            role: 'provider',
+          },
+        });
+      } else {
+        reject(new Error('Invalid email or password'));
+      }
+    }, 1000);
+  });
+};
+
 const Login = () => {
   const [formData, setFormData] = useState({
     name: '',
-    password: ''
+    email: '', // Added email here
+    password: '',
   });
+
   const [errorMessage, setErrorMessage] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -17,7 +37,7 @@ const Login = () => {
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -27,10 +47,11 @@ const Login = () => {
     setErrorMessage(''); // Clear previous error message
 
     try {
-
+      // Login using your context
       const userData = await login(formData.name, formData.password);
+
       // Redirect based on user role
-      switch(userData.role) {
+      switch (userData.role) {
         case 'patient':
           navigate('/patients');
           break;
@@ -44,32 +65,35 @@ const Login = () => {
           navigate('/');
       }
     } catch (error) {
-      console.error('Login failed:', error.message);
-      // Handle login error (e.g., display error message to user)
-      const response = await apiLogin(formData.email, formData.password);
-      if (response && response.data) {
-        login(response.data);
-
-        // Redirect based on user role
-        switch(response.data.role) {
-          case 'patient':
-            navigate('/patients');
-            break;
-          case 'sponsor':
-            navigate('/sponsors');
-            break;
-          case 'provider':
-            navigate('/providers');
-            break;
-          default:
-            navigate('/');
-        }
-      } else {
-        throw new Error('Invalid login response structure');
-      }
-    } catch(error) {
       console.error('Login failed:', error);
-      setErrorMessage('Invalid email or password');
+
+      try {
+        // Handle login through API
+        const response = await apiLogin(formData.email, formData.password);
+        if (response && response.data) {
+          login(response.data);
+
+          // Redirect based on user role
+          switch (response.data.role) {
+            case 'patient':
+              navigate('/patients');
+              break;
+            case 'sponsor':
+              navigate('/sponsors');
+              break;
+            case 'provider':
+              navigate('/providers');
+              break;
+            default:
+              navigate('/');
+          }
+        } else {
+          throw new Error('Invalid login response structure');
+        }
+      } catch (apiError) {
+        console.error('API Login failed:', apiError);
+        setErrorMessage('Invalid email or password');
+      }
     } finally {
       setLoading(false); // Reset loading state after request completes
     }
@@ -80,9 +104,15 @@ const Login = () => {
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
         <div>
-
           <label>Name:</label>
-          <input type="text" name="name" value={formData.name} onChange={handleChange} required /
+          <input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+          />
+
           <label>Email:</label>
           <input
             type="email"
@@ -91,7 +121,6 @@ const Login = () => {
             onChange={handleChange}
             required
           />
-
         </div>
         <div>
           <label>Password:</label>
@@ -105,7 +134,7 @@ const Login = () => {
         </div>
 
         {errorMessage && <div className="error">{errorMessage}</div>} {/* Show error message */}
-        
+
         <button type="submit" disabled={loading}>
           {loading ? 'Loading...' : 'Login'}
         </button>
