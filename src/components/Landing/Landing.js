@@ -1,8 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import styles from './Landing.module.css';  // Import styles from CSS module
-import Navbar from '../layout/Navbar';
-import Footer from '../layout/Footer';
+import styles from './Landing.module.css'; 
 
 const Landing = ({ isDarkMode }) => {
   // Animation Variants for Framer Motion
@@ -23,7 +21,7 @@ const Landing = ({ isDarkMode }) => {
 
   return (
     <div className={`${styles.container} ${isDarkMode ? styles.dark : styles.light}`}>
-      <Navbar />
+      
 
       <motion.div className={styles.bgGradient} initial="hidden" animate="visible" variants={bgVariants}>
         <svg

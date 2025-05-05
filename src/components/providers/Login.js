@@ -1,11 +1,18 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 import './ProviderDashboard.css';
 
 const Login = () => {
   const [formData, setFormData] = useState({
-    email: '',
+    name: '',
     password: ''
   });
+  const [errorMessage, setErrorMessage] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
+  const { login } = useAuth();
 
   const handleChange = (e) => {
     setFormData({
@@ -14,10 +21,33 @@ const Login = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Submit login data to the backend
-    console.log(formData);
+    setLoading(true);
+    setErrorMessage('');
+
+    try {
+      const userData = await login(formData.name, formData.password);
+      // Redirect based on user role
+      switch (userData.role) {
+        case 'patient':
+          navigate('/patients');
+          break;
+        case 'sponsor':
+          navigate('/sponsors');
+          break;
+        case 'provider':
+          navigate('/providers');
+          break;
+        default:
+          navigate('/');
+      }
+    } catch (error) {
+      console.error('Login failed:', error.message);
+      setErrorMessage('Invalid email or password');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -25,14 +55,31 @@ const Login = () => {
       <h2>Login</h2>
       <form onSubmit={handleSubmit}>
         <div>
-          <label>Email:</label>
-          <input type="email" name="email" value={formData.email} onChange={handleChange} required />
+          <label>Name:</label>
+          <input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+          />
         </div>
         <div>
           <label>Password:</label>
-          <input type="password" name="password" value={formData.password} onChange={handleChange} required />
+          <input
+            type="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            required
+          />
         </div>
-        <button type="submit">Login</button>
+
+        {errorMessage && <div className="error">{errorMessage}</div>}
+        
+        <button type="submit" disabled={loading}>
+          {loading ? 'Loading...' : 'Login'}
+        </button>
       </form>
     </div>
   );

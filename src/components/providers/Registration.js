@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 import './ProviderDashboard.css';
 
 const Registration = () => {
@@ -6,8 +8,10 @@ const Registration = () => {
     name: '',
     email: '',
     password: '',
-    role: 'patient' // Default role
+    role: 'patient'
   });
+  const navigate = useNavigate();
+  const { register } = useAuth();
 
   const handleChange = (e) => {
     setFormData({
@@ -16,12 +20,30 @@ const Registration = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Submit form data to the backend
-    console.log(formData);
+    try {
+      const userData = await register(formData.name, formData.email, formData.password, formData.role);
+      // Redirect based on user role
+      switch(userData.role) {
+        case 'patient':
+          navigate('/patients');
+          break;
+        case 'sponsor':
+          navigate('/sponsors');
+          break;
+        case 'provider':
+          navigate('/providers');
+          break;
+        default:
+          navigate('/');
+      }
+    } catch (error) {
+      console.error('Registration failed:', error.message);
+      // Handle registration error (e.g., display error message to user)
+    }
   };
-
+  
   return (
     <div className="registration-container">
       <h2>Register</h2>
